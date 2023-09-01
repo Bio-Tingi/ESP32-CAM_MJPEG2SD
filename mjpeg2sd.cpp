@@ -322,9 +322,19 @@ static bool closeAvi() {
     LOG_INF("Busy: %u%%", std::min(100 * (wTimeTot + fTimeTot + dTimeTot + oTime + cTime) / vidDuration, (uint32_t)100));
     checkMemory();
     LOG_INF("*************************************");
+    sprintf(jsonBuff, "Mustiala;Camera_test;%u;Camera;0", getEpoch());
+    Serial.print("HTTP status buffer & code Off: ");
+    Serial.print(jsonBuff);
+    HTTPClient https;
+    WiFiClient databaseclient;
+    https.begin(databaseclient, mqtt_broker);
+    int statusCodeOff = https.POST(jsonBuff);
+    Serial.print("...");
+    Serial.println(statusCodeOff);
+    https.end();
     if (mqtt_active) {
-      sprintf(jsonBuff, "{\"RECORD\":\"OFF\", \"TIME\":\"%s\"}", esp_log_system_timestamp());
-      mqttPublish(jsonBuff);
+      //sprintf(jsonBuff, "{\"RECORD\":\"OFF\", \"TIME\":\"%s\"}", esp_log_system_timestamp());
+      //mqttPublish(jsonBuff);
     }
     if (autoUpload) ftpFileOrFolder(aviFileName); // Upload it to remote ftp server if requested
     checkFreeSpace();
@@ -373,9 +383,19 @@ static boolean processFrame() {
       stopPlaying(); // terminate any playback
       stopPlayback = true; // stop any subsequent playback
       LOG_ALT("Capture started by %s%s%s", captureMotion ? "Motion " : "", pirVal ? "PIR" : "",forceRecord ? "Button" : "");
+      sprintf(jsonBuff, "Mustiala;Camera_test;%u;Camera;1", getEpoch());
+      Serial.print("HTTP status buffer & code On: ");
+      Serial.print(jsonBuff);
+      HTTPClient https;
+      WiFiClient databaseclient;
+      https.begin(databaseclient, mqtt_broker);
+      int statusCodeOn= https.POST(jsonBuff);
+      Serial.print("...");
+      Serial.println(statusCodeOn);
+      https.end();
       if (mqtt_active) {
-        sprintf(jsonBuff, "{\"RECORD\":\"ON\", \"TIME\":\"%s\"}", esp_log_system_timestamp());
-        mqttPublish(jsonBuff);
+        //sprintf(jsonBuff, "{\"RECORD\":\"ON\", \"TIME\":\"%s\"}", esp_log_system_timestamp());
+        //mqttPublish(jsonBuff);
       }
       openAvi();
       wasCapturing = true;
