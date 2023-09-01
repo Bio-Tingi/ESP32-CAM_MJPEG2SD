@@ -5,13 +5,13 @@
 #pragma once
 #include "globals.h"
 
-#if defined(CONFIG_IDF_TARGET_ESP32)
+//#if defined(CONFIG_IDF_TARGET_ESP32)
 // default pin configuration for ESP32 cam boards
-#define CAMERA_MODEL_AI_THINKER // Has PSRAM  
-#elif defined(CONFIG_IDF_TARGET_ESP32S3)
+//#define CAMERA_MODEL_AI_THINKER // Has PSRAM  
+//#elif defined(CONFIG_IDF_TARGET_ESP32S3)
 // default pin configuration below for Freenove ESP32S3 cam boards
-#define CAMERA_MODEL_ESP32S3_EYE // Has PSRAM
-#endif
+//#define CAMERA_MODEL_ESP32S3_EYE // Has PSRAM
+//#endif
 
 /**************************************************************************
  Uncomment one only of the camera models below if not using a default above
@@ -27,7 +27,7 @@
 //#define CAMERA_MODEL_M5STACK_ESP32CAM // No PSRAM
 //#define CAMERA_MODEL_M5STACK_UNITCAM // No PSRAM
 //#define CAMERA_MODEL_TTGO_T_JOURNAL // No PSRAM
-//#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
+#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
 //#define CAMERA_MODEL_ESP32_CAM_BOARD
 //#define CAMERA_MODEL_ESP32S2_CAM_BOARD
 //#define CAMERA_MODEL_ESP32S3_CAM_LCD
