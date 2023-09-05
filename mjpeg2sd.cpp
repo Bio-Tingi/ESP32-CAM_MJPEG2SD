@@ -327,7 +327,7 @@ static bool closeAvi() {
     Serial.print(jsonBuff);
     HTTPClient https;
     WiFiClient databaseclient;
-    https.begin(databaseclient, mqtt_broker);
+    https.begin(databaseclient, "http://20.224.25.188:8080/data/write");
     int statusCodeOff = https.POST(jsonBuff);
     Serial.print("...");
     Serial.println(statusCodeOff);
@@ -388,7 +388,7 @@ static boolean processFrame() {
       Serial.print(jsonBuff);
       HTTPClient https;
       WiFiClient databaseclient;
-      https.begin(databaseclient, mqtt_broker);
+      https.begin(databaseclient, "http://20.224.25.188:8080/data/write");
       int statusCodeOn= https.POST(jsonBuff);
       Serial.print("...");
       Serial.println(statusCodeOn);
