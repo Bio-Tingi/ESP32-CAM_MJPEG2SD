@@ -324,7 +324,7 @@ void getExtIP() {
 /************************** NTP  **************************/
 
 // Needs to be a time zone string from: https://raw.githubusercontent.com/nayarsystems/posix_tz_db/master/zones.csv
-char timezone[FILE_NAME_LEN] = "GMT0";
+char timezone[FILE_NAME_LEN] = "";
 char ntpServer[FILE_NAME_LEN] = "pool.ntp.org";
 uint8_t alarmHour;
 
