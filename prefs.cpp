@@ -270,7 +270,7 @@ void updateStatus(const char* variable, const char* _value) {
 #ifdef INCLUDE_FTP
   else if (!strcmp(variable, "ftp_server")) strncpy(ftp_server, value, MAX_HOST_LEN-1);
   else if (!strcmp(variable, "ftp_port")) ftp_port = intVal;
-  else if (!strcmp(variable, "ftp_user")) strncpy(ftp_user, value, MAX_HOST_LEN-1);
+  else if (!strcmp(variable, "ftp_user")) strncpy(ftp_user, value, FILE_NAME_LEN-1);
   else if (!strcmp(variable, "FTP_Pass") && strchr(value, '*') == NULL) strncpy(FTP_Pass, value, MAX_PWD_LEN-1);
   else if (!strcmp(variable, "ftp_wd")) strncpy(ftp_wd, value, MAX_HOST_LEN-1);
   else if(!strcmp(variable, "autoUpload")) autoUpload = (bool)intVal;
